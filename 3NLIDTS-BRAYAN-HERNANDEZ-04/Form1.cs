@@ -47,5 +47,20 @@ namespace _3NLIDTS_BRAYAN_HERNANDEZ_04
             rbmasculino.Checked = false;
         }
 
+            string ruta = "datos.txt";
+
+            if (File.Exists(ruta))
+            {
+                // Abrir el archivo en el bloc de notas
+                Process.Start("notepad.exe", ruta);
+            }
+            else
+            {
+                MessageBox.Show("Aún no hay registros guardados.",
+                                "Información",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            }
+        }
     }
 }
