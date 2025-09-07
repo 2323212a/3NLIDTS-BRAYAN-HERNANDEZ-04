@@ -9,10 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
-using System.IO;         
-using System.Diagnostics;
-
+using System.IO;
 
 namespace _3NLIDTS_BRAYAN_HERNANDEZ_04
 {
@@ -21,68 +18,6 @@ namespace _3NLIDTS_BRAYAN_HERNANDEZ_04
         public Form1()
         {
             InitializeComponent();
-
-            txtedad.TextChanged += ValidarEdad;
-            txtnombre.TextChanged += ValidarNombre;
-            txtapellido.TextChanged += ValidarApellido;
-            txttelefono.Leave += ValidarTelefono;
-            txtestatura.TextChanged += ValidarEstatura;
-
-        }
-
-        private void ValidarNombre(object sender, EventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            if (!EsTextoValido(textBox.Text))
-            {
-                MessageBox.Show("Por favor ingrese un nombre válido (solo letras y espacios).",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBox.Clear();
-            }
-        }
-
-        private void ValidarApellido(object sender, EventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            if (!EsTextoValido(textBox.Text))
-            {
-                MessageBox.Show("Por favor ingrese un apellido válido (solo letras y espacios).",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBox.Clear();
-            }
-        }
-
-        private void ValidarEdad(object sender, EventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            if (!Regex.IsMatch(textBox.Text, @"^[0-9]{1,2}$")) // Edad entre 0 y 99
-            {
-                MessageBox.Show("Ingrese una edad válida (solo números, máximo 2 dígitos).",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBox.Clear();
-            }
-        }
-
-        private void ValidarEstatura(object sender, EventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            if (!double.TryParse(textBox.Text, out _))
-            {
-                MessageBox.Show("Ingrese solo números en la estatura (ejemplo: 1.75).",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBox.Clear();
-            }
-        }
-
-        private void ValidarTelefono(object sender, EventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            if (!Regex.IsMatch(textBox.Text, @"^[0-9]{10}$")) // 10 dígitos
-            {
-                MessageBox.Show("Ingrese un teléfono válido de 10 dígitos.",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBox.Clear();
-            }
         }
 
         private bool EsTextoValido(string valor)
@@ -90,31 +25,68 @@ namespace _3NLIDTS_BRAYAN_HERNANDEZ_04
             return Regex.IsMatch(valor, @"^[a-zA-Z\s]+$");
         }
 
+        private bool ValidarCampos()
+        {
+            if (!EsTextoValido(txtnombre.Text))
+            {
+                MessageBox.Show("Por favor ingrese un nombre válido (solo letras y espacios).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (!EsTextoValido(txtapellido.Text))
+            {
+                MessageBox.Show("Por favor ingrese un apellido válido (solo letras y espacios).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (!Regex.IsMatch(txtedad.Text, @"^[0-9]{1,2}$"))
+            {
+                MessageBox.Show("Ingrese una edad válida (solo números, máximo 2 dígitos).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (!Regex.IsMatch(txttelefono.Text, @"^[0-9]{10}$"))
+            {
+                MessageBox.Show("Ingrese un teléfono válido de 10 dígitos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (!double.TryParse(txtestatura.Text, out _))
+            {
+                MessageBox.Show("Ingrese solo números en la estatura (ejemplo: 1.75).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (!rbfemenino.Checked && !rbmasculino.Checked)
+            {
+                MessageBox.Show("Seleccione un género.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!ValidarCampos())
+                return;
+
             string edad = txtedad.Text;
             string nombre = txtnombre.Text;
             string apellido = txtapellido.Text;
             string telefono = txttelefono.Text;
             string estatura = txtestatura.Text;
-            string genero = "";
-            if (rbfemenino.Checked)
-            {
-                genero = "Femenino";
-            }
-            else if (rbmasculino.Checked)
-            {
-                genero = "Masculino";
-            }
+            string genero = rbfemenino.Checked ? "Femenino" : "Masculino";
             string datos = $"Nombre: {nombre}\r\nApellido: {apellido}\r\nEdad: {edad}\r\nTeléfono: {telefono}\r\nEstatura: {estatura}\r\nGénero: {genero}";
             MessageBox.Show(datos, "Datos Guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            string ruta = "datos.txt"; // El archivo se creará en la carpeta del programa
-            File.AppendAllText(ruta, datos + Environment.NewLine + "---------------------" + Environment.NewLine);
+
+            string ruta = "datos.txt";
+            try
+            {
+                File.AppendAllText(ruta, datos + Environment.NewLine + "---------------------" + Environment.NewLine);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
         private void btnregistros_Click_1(object sender, EventArgs e)
         {
-
             string ruta = "datos.txt";
 
             if (File.Exists(ruta))
