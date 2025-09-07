@@ -41,8 +41,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbmasculino = new System.Windows.Forms.RadioButton();
             this.rbfemenino = new System.Windows.Forms.RadioButton();
+            this.rbmasculino = new System.Windows.Forms.RadioButton();
+            this.btnregistros = new System.Windows.Forms.Button();
+            this.btnborrar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -144,28 +146,18 @@
             this.button2.TabIndex = 11;
             this.button2.Text = "Salir";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.rbfemenino);
             this.groupBox1.Controls.Add(this.rbmasculino);
-            this.groupBox1.Location = new System.Drawing.Point(154, 219);
+            this.groupBox1.Location = new System.Drawing.Point(63, 195);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(258, 52);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Genero:";
-            // 
-            // rbmasculino
-            // 
-            this.rbmasculino.AutoSize = true;
-            this.rbmasculino.Location = new System.Drawing.Point(6, 21);
-            this.rbmasculino.Name = "rbmasculino";
-            this.rbmasculino.Size = new System.Drawing.Size(89, 20);
-            this.rbmasculino.TabIndex = 0;
-            this.rbmasculino.TabStop = true;
-            this.rbmasculino.Text = "Masculino";
-            this.rbmasculino.UseVisualStyleBackColor = true;
             // 
             // rbfemenino
             // 
@@ -178,11 +170,45 @@
             this.rbfemenino.Text = "Femenino";
             this.rbfemenino.UseVisualStyleBackColor = true;
             // 
+            // rbmasculino
+            // 
+            this.rbmasculino.AutoSize = true;
+            this.rbmasculino.Location = new System.Drawing.Point(6, 21);
+            this.rbmasculino.Name = "rbmasculino";
+            this.rbmasculino.Size = new System.Drawing.Size(89, 20);
+            this.rbmasculino.TabIndex = 0;
+            this.rbmasculino.TabStop = true;
+            this.rbmasculino.Text = "Masculino";
+            this.rbmasculino.UseVisualStyleBackColor = true;
+            // 
+            // btnregistros
+            // 
+            this.btnregistros.Location = new System.Drawing.Point(454, 277);
+            this.btnregistros.Name = "btnregistros";
+            this.btnregistros.Size = new System.Drawing.Size(75, 23);
+            this.btnregistros.TabIndex = 13;
+            this.btnregistros.Text = "Registros";
+            this.btnregistros.UseVisualStyleBackColor = true;
+            this.btnregistros.Click += new System.EventHandler(this.btnregistros_Click_1);
+            // 
+            // btnborrar
+            // 
+            this.btnborrar.Location = new System.Drawing.Point(25, 276);
+            this.btnborrar.Name = "btnborrar";
+            this.btnborrar.Size = new System.Drawing.Size(75, 23);
+            this.btnborrar.TabIndex = 14;
+            this.btnborrar.Text = "borrar";
+            this.btnborrar.UseVisualStyleBackColor = true;
+            this.btnborrar.Click += new System.EventHandler(this.btnborrar_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnborrar);
+            this.Controls.Add(this.btnregistros);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -197,7 +223,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Registro";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -222,6 +248,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rbfemenino;
         private System.Windows.Forms.RadioButton rbmasculino;
+        private System.Windows.Forms.Button btnregistros;
+        private System.Windows.Forms.Button btnborrar;
     }
 }
 
