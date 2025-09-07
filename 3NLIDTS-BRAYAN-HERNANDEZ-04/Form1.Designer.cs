@@ -152,7 +152,7 @@
             // 
             this.groupBox1.Controls.Add(this.rbfemenino);
             this.groupBox1.Controls.Add(this.rbmasculino);
-            this.groupBox1.Location = new System.Drawing.Point(154, 219);
+            this.groupBox1.Location = new System.Drawing.Point(63, 195);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(258, 52);
             this.groupBox1.TabIndex = 12;
