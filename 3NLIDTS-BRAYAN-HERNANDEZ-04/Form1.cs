@@ -46,7 +46,7 @@ namespace _3NLIDTS_BRAYAN_HERNANDEZ_04
             TextBox textBox = (TextBox)sender;
             if (!EsTextoValido(textBox.Text))
             {
-                MessageBox.Show("Por favor ingrese un apellido válido (solo letras y espacios).",
+                MessageBox.Show("Por favor ingrese un apellido válido (letras y espacios).",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 textBox.Clear();
             }
@@ -55,7 +55,7 @@ namespace _3NLIDTS_BRAYAN_HERNANDEZ_04
         private void ValidarEdad(object sender, EventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            if (!Regex.IsMatch(textBox.Text, @"^[0-9]{1,2}$")) // Edad entre 0 y 99
+            if (!Regex.IsMatch(textBox.Text, @"^[0-9]{1,2}$"))
             {
                 MessageBox.Show("Ingrese una edad válida (solo números, máximo 2 dígitos).",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -88,6 +88,7 @@ namespace _3NLIDTS_BRAYAN_HERNANDEZ_04
         private bool EsTextoValido(string valor)
         {
             return Regex.IsMatch(valor, @"^[a-zA-Z\s]+$");
+
         }
 
 
@@ -109,7 +110,7 @@ namespace _3NLIDTS_BRAYAN_HERNANDEZ_04
             }
             string datos = $"Nombre: {nombre}\r\nApellido: {apellido}\r\nEdad: {edad}\r\nTeléfono: {telefono}\r\nEstatura: {estatura}\r\nGénero: {genero}";
             MessageBox.Show(datos, "Datos Guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            string ruta = "datos.txt"; // El archivo se creará en la carpeta del programa
+            string ruta = "datos.txt"; 
             File.AppendAllText(ruta, datos + Environment.NewLine + "---------------------" + Environment.NewLine);
         }
         private void btnregistros_Click_1(object sender, EventArgs e)
