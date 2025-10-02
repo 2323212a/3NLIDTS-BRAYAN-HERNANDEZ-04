@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using System.IO;         
-using System.Diagnostics;
 
 
 namespace _3NLIDTS_BRAYAN_HERNANDEZ_04
