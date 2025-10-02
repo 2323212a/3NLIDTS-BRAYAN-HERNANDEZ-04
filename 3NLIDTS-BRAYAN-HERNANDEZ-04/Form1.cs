@@ -61,6 +61,7 @@ namespace _3NLIDTS_BRAYAN_HERNANDEZ_04
                 textBox.Clear();
             }
         }
+       
 
         private void ValidarEstatura(object sender, EventArgs e)
         {
@@ -83,7 +84,6 @@ namespace _3NLIDTS_BRAYAN_HERNANDEZ_04
                 textBox.Clear();
             }
         }
-
         private bool EsTextoValido(string valor)
         {
             return Regex.IsMatch(valor, @"^[a-zA-Z\s]+$");
@@ -114,9 +114,7 @@ namespace _3NLIDTS_BRAYAN_HERNANDEZ_04
         }
         private void btnregistros_Click_1(object sender, EventArgs e)
         {
-
             string ruta = "datos.txt";
-
             if (File.Exists(ruta))
             {
                 Process.Start("notepad.exe", ruta);
@@ -130,7 +128,7 @@ namespace _3NLIDTS_BRAYAN_HERNANDEZ_04
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click (object sender, EventArgs e)
         {
             Close();
         }
