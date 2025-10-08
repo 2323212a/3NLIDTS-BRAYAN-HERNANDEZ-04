@@ -10,7 +10,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
-using System.IO;         
+using System.IO;
+using MySql.Data.MySqlClient;
 
 
 namespace _3NLIDTS_BRAYAN_HERNANDEZ_04
